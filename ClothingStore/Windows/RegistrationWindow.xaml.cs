@@ -34,6 +34,14 @@ namespace ClothingStore.Windows
 
         private void BtnAdduser_Click(object sender, RoutedEventArgs e)
         {
+            // валидация
+            if (string.IsNullOrWhiteSpace(TbLogin.Text))
+            {
+                MessageBox.Show("Логин не может быть пустым или состоять из пробелов");
+                return;
+            }
+            
+            // добавление новой записи 
             EFClass.Context.User.Add(new User() 
             { 
                 Login = TbLogin.Text,
@@ -48,8 +56,11 @@ namespace ClothingStore.Windows
 
             });
 
+            // сохранение изменений
             EFClass.Context.SaveChanges();
 
+
+            // оповещение об успехе
             MessageBox.Show("Ok");
 
 
