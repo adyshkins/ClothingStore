@@ -13,18 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ClothingStore
+namespace ClothingStore.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для TestPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TestPage : Page
     {
-        public MainWindow()
+        public TestPage()
         {
             InitializeComponent();
-
-            mainFrame.Navigate(new Pages.TestPage());
+            
         }
     }
 }
