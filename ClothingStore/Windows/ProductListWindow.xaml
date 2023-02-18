@@ -59,8 +59,15 @@
                             Margin="5">
                         <StackPanel>
                             <Image Height="100"
-                                   Width="90"
-                                   Source="/Res/img1.jpg"/>
+                                   Width="90">
+                                <Image.Source>
+                                    <Binding Path="ProductImage">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/Res/defImg.jpeg</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Name}"
                                        Margin="5 0 0 0"/>
                             <TextBlock Text="{Binding Price}"
@@ -71,5 +78,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
+        <Button x:Name="BtnAddProduct"
+                Grid.Row="3"
+                Content="Добавить товар"
+                Height="30"
+                Width="150"
+                HorizontalAlignment="Right"
+                FontSize="18"
+                Margin="0 0 10 0"
+                Click="BtnAddProduct_Click"/>
     </Grid>
 </Window>

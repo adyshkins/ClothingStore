@@ -38,5 +38,14 @@ namespace ClothingStore.Windows
 
             LvProduct.ItemsSource = products;
         }
+
+        private void BtnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            // переход на окно добавления товара
+            AddEditProductWindow addEditProductWindow = new AddEditProductWindow();
+            addEditProductWindow.ShowDialog();
+
+            GetListProduct();
+        }
     }
 }
