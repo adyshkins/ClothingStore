@@ -26,6 +26,9 @@ namespace ClothingStore.Windows
     public partial class AddEditProductWindow : Window
     {
         private string pathImageProduct = null;
+        private bool isEdit = false;
+        Product editProduct;
+
 
         public AddEditProductWindow()
         {
@@ -35,6 +38,52 @@ namespace ClothingStore.Windows
             CmbCategory.DisplayMemberPath = "Name";
             CmbCategory.SelectedIndex = 0;
         }
+
+        public AddEditProductWindow(Product product)
+        {
+            InitializeComponent();
+
+            // Заполнение комбобокса
+
+            CmbCategory.ItemsSource = EFClass.Context.Category.ToList();
+            CmbCategory.DisplayMemberPath = "Name";
+            CmbCategory.SelectedIndex = 0;
+
+            // заполнение полей значениями 
+            TbName.Text = product.Name;
+            TbPrice.Text = product.Price.ToString();
+            CmbCategory.SelectedItem = EFClass.Context.Category.ToList().Where(i => i.IDCategory == product.IDCategory).FirstOrDefault() ;
+
+            // вывод фото
+
+            if (product.ProductImage != null)
+            {
+                using (MemoryStream ms = new MemoryStream(product.ProductImage))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    bitmapImage.StreamSource = ms;
+                    bitmapImage.EndInit();
+                    ImgProduct.Source = bitmapImage;
+                }
+            }
+            
+
+            // Изменение заголовка и кнопки 
+
+            TblockTitle.Text = "Изменение товара";
+            BtnAddProduct.Content = "Изменить";
+
+            // флаг на изменение
+            isEdit = true;
+
+            // выводим из контекста класса полученный продукт
+            editProduct = product;
+        }
+
+
 
         private void BtnChooseImage_Click(object sender, RoutedEventArgs e)
         {
@@ -51,21 +100,42 @@ namespace ClothingStore.Windows
         {
             // валидация 
 
-            // добавление
-            Product product = new Product();
-            product.Name = TbName.Text;
-            product.Price = Convert.ToDecimal(TbPrice.Text);
-            product.IDCategory = (CmbCategory.SelectedItem as Category).IDCategory;
-            if (pathImageProduct != null)
+            if (isEdit)
             {
-                product.ProductImage = File.ReadAllBytes(pathImageProduct);
+                // редактирование
+
+                editProduct.Name = TbName.Text;
+                editProduct.Price = Convert.ToDecimal(TbPrice.Text);
+                editProduct.IDCategory = (CmbCategory.SelectedItem as Category).IDCategory;
+                if (pathImageProduct != null)
+                {
+                    editProduct.ProductImage = File.ReadAllBytes(pathImageProduct);
+                }
+
+                EFClass.Context.SaveChanges();
+
+                MessageBox.Show("Товар успешно изменен");
+
+
             }
-            
+            else
+            {
+                // добавление
+                Product product = new Product();
+                product.Name = TbName.Text;
+                product.Price = Convert.ToDecimal(TbPrice.Text);
+                product.IDCategory = (CmbCategory.SelectedItem as Category).IDCategory;
+                if (pathImageProduct != null)
+                {
+                    product.ProductImage = File.ReadAllBytes(pathImageProduct);
+                }
 
-            EFClass.Context.Product.Add(product);
-            EFClass.Context.SaveChanges();
+                EFClass.Context.Product.Add(product);
+                EFClass.Context.SaveChanges();
 
-            MessageBox.Show("Товар добавлен");
+                MessageBox.Show("Товар добавлен");
+            }
+                      
 
             this.Close();
         }

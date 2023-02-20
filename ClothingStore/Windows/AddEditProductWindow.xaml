@@ -14,7 +14,8 @@
                     VerticalAlignment="Center">
             <TextBlock Text="Добавление товара"
                        FontSize="30"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center"
+                       x:Name="TblockTitle"/>
 
             <Border BorderBrush="DarkBlue" 
                     BorderThickness="1"
