@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClassHelper\UserDataClass.cs" />
     <Compile Include="Windows\AddEditProductWindow.xaml.cs">
       <DependentUpon>AddEditProductWindow.xaml</DependentUpon>
     </Compile>

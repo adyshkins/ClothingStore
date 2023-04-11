@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="AuthWindow" 
         Height="550" 
-        Width="400">
+        Width="400"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
 

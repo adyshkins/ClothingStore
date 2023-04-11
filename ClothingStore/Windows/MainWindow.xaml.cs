@@ -23,8 +23,14 @@ namespace ClothingStore
         public MainWindow()
         {
             InitializeComponent();
+           
+        }
 
-            mainFrame.Navigate(new Pages.TestPage());
+        private void BtnPRoduct_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.ProductListWindow productListWindow = new Windows.ProductListWindow();  
+            productListWindow.Show();
+            this.Close();
         }
     }
 }
