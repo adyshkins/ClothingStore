@@ -31,6 +31,11 @@ namespace ClothingStore.Windows
             GetListProduct();
         }
 
+        private void GetCountCartProduct()
+        {
+            TxtCartCount.Text = ClassHelper.CartClass.products.Count.ToString();
+        }
+
         private void GetListProduct()
         {
             List<Product> products = new List<Product>();
@@ -46,6 +51,7 @@ namespace ClothingStore.Windows
             addEditProductWindow.ShowDialog();
 
             GetListProduct();
+            GetCountCartProduct();
         }
 
         private void BtnMore_Click(object sender, RoutedEventArgs e)
@@ -62,7 +68,34 @@ namespace ClothingStore.Windows
             addEditProductWindow.ShowDialog();
 
             GetListProduct();
+            GetCountCartProduct();
 
+        }
+
+        private void BtnCart_Click(object sender, RoutedEventArgs e)
+        {
+            // добавление в корзину
+
+            Button button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            Product selectedProduct = button.DataContext as Product;
+
+            ClassHelper.CartClass.products.Add(selectedProduct);
+
+            GetCountCartProduct();
+        }
+
+        private void BtnGoToCart_Click(object sender, RoutedEventArgs e)
+        {
+            CArtWindow cArtWindow = new CArtWindow();
+            cArtWindow.Show();
+            this.Close();
+
+            GetCountCartProduct();
         }
     }
 }

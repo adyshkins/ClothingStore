@@ -74,7 +74,7 @@ namespace ClothingStore.Windows
                     // Client
 
                     // сохраняем клиента
-                    ClassHelper.UserDataClass.Client = userAuth;
+                    //ClassHelper.UserDataClass.Client = userAuth;
 
 
                     ProductListWindow productListWindow = new ProductListWindow();

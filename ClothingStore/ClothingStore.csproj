@@ -64,9 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClassHelper\CartClass.cs" />
     <Compile Include="ClassHelper\UserDataClass.cs" />
     <Compile Include="Windows\AddEditProductWindow.xaml.cs">
       <DependentUpon>AddEditProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CArtWindow.xaml.cs">
+      <DependentUpon>CArtWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProductListWindow.xaml.cs">
       <DependentUpon>ProductListWindow.xaml</DependentUpon>
@@ -83,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CArtWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +240,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Res\icons8-edit-64.png" />
+    <Resource Include="Res\icons8-remove-50.png" />
+    <Resource Include="Res\icons8-shopping-cart-30.png" />
     <Resource Include="Res\defImg.jpeg" />
     <Resource Include="Res\img1.jpg" />
   </ItemGroup>
