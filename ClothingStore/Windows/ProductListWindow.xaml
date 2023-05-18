@@ -63,7 +63,8 @@
                             BorderThickness="2"
                             Width="100"
                             Height="180"
-                            Margin="5">
+                            Margin="5"
+                            Background="{Binding Color}">
                         <StackPanel>
                             <Image Height="100"
                                    Width="90">
